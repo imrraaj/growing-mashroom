@@ -4,6 +4,7 @@ import { dijkstra } from "../algorithms/dijkstra";
 
 import { bfs } from "../algorithms/bfs";
 import { dfs } from "../algorithms/dfs";
+import { solveMaze } from "../algorithms/ratMaze";
 
 export default function Pathfinder() {
   const data = {
@@ -423,7 +424,7 @@ export default function Pathfinder() {
           <input
             id="grid-size"
             type="range"
-            min={20}
+            min={10}
             max={50}
             onChange={(e) =>
               setState({
@@ -442,6 +443,25 @@ export default function Pathfinder() {
           <Button onClick={() => visualize("BFS")}>BFS</Button>
           <Button onClick={() => visualize("DFS")}>DFS</Button>
           <Button onClick={() => randomWalls()}>Random Maze</Button>
+          <Button
+            onClick={() => {
+              console.log(state.FINISH_NODE_ROW, state.FINISH_NODE_COL);
+              solveMaze(
+                state.grid,
+                state.START_NODE_ROW,
+                state.START_NODE_COL,
+                state.FINISH_NODE_ROW,
+                state.FINISH_NODE_COL
+              );
+
+              for (const row of state.grid) {
+                for (const node of row) {
+                }
+              }
+            }}
+          >
+            Rat in Maze
+          </Button>
         </div>
       </main>
     </div>
